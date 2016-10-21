@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://u14e.me/2016/10/21/use-hexo-github-start-your-blog/index.html">
 <meta property="og:site_name" content="u14e">
 <meta property="og:description" content="前言其实刚学编程时，就尝试过按照网上的教学手把手傻瓜式的折腾一个hexo+github pages出来。结果显然是因为什么都不懂，遇到问题也不知道该从哪里开始着手，所以每次重复操作都以失败告终。现在工作半年了，算是对编程有些领悟了，刚好有时间，就重新尝试了下，结果还真成功了，而且还很简单。所以这里记录下我搭建的整个过程，不是教别人，只是记录。如果被别人看到，并有所借鉴，那是极好的，毕竟我也是借鉴别">
-<meta property="og:updated_time" content="2016-10-21T14:07:56.792Z">
+<meta property="og:updated_time" content="2016-10-21T14:41:32.306Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用hexo+github建立自己的博客">
 <meta name="twitter:description" content="前言其实刚学编程时，就尝试过按照网上的教学手把手傻瓜式的折腾一个hexo+github pages出来。结果显然是因为什么都不懂，遇到问题也不知道该从哪里开始着手，所以每次重复操作都以失败告终。现在工作半年了，算是对编程有些领悟了，刚好有时间，就重新尝试了下，结果还真成功了，而且还很简单。所以这里记录下我搭建的整个过程，不是教别人，只是记录。如果被别人看到，并有所借鉴，那是极好的，毕竟我也是借鉴别">
@@ -162,7 +162,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">有意思额...</p>
+  <p class="site-subtitle"></p>
 </div>
 
 <div class="site-nav-toggle">
@@ -295,42 +295,33 @@
 
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>其实刚学编程时，就尝试过按照网上的教学手把手傻瓜式的折腾一个hexo+github pages出来。结果显然是因为什么都不懂，遇到问题也不知道该从哪里开始着手，所以每次重复操作都以失败告终。现在工作半年了，算是对编程有些领悟了，刚好有时间，就重新尝试了下，结果还真成功了，而且还很简单。所以这里记录下我搭建的整个过程，不是教别人，只是记录。如果被别人看到，并有所借鉴，那是极好的，毕竟我也是借鉴别人的经验才做成的。</p>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
-<li>域名购买与解析以及与github绑定</li>
-<li>hexo生成与定制</li>
-<li>部署</li>
-</ul>
-<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>一、 域名购买</p>
-<ul>
+<h2 id="域名购买"><a href="#域名购买" class="headerlink" title="域名购买"></a>域名购买</h2><ol>
 <li>首先是去<a href="https://sg.godaddy.com/zh" target="_blank" rel="external">Godaddy</a>搜索自己想好的域名（比如我的是u14e.me）</li>
 <li>如果还没被出售就选择，然后进入购物车</li>
 <li>其他的什么保护隐私、建站达人、虚拟主机都不用选，然后继续进入购物车</li>
 <li>期限看自己情况，我选的是一年</li>
 <li>看到价格还是那个价格就说明你没有买其他的附加产品，优惠码网上搜索一下，一般都会优惠一点</li>
 <li>然后结算，新页面中选择新用户，在结算页面填好信息，继续就可以了…</li>
-</ul>
-<p>二、 DNS解析</p>
-<ul>
+</ol>
+<h2 id="DNS解析"><a href="#DNS解析" class="headerlink" title="DNS解析"></a>DNS解析</h2><ol>
 <li>去<a href="https://www.dnspod.cn" target="_blank" rel="external">DNSpod</a>注册账户</li>
 <li>选择左侧栏的域名解析</li>
 <li>进入控制台，选择添加域名，键入你的域名</li>
 <li>添加两条记录(记录值指向的IP地址是github pages的IP)<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">192.30.252.153</div><div class="line">192.30.252.154</div></pre></td></tr></table></figure>
 </li>
-</ul>
-<p>三、 修改域名对应的DNS地址</p>
-<ul>
+</ol>
+<h2 id="修改域名对应的DNS地址"><a href="#修改域名对应的DNS地址" class="headerlink" title="修改域名对应的DNS地址"></a>修改域名对应的DNS地址</h2><ol>
 <li>去<a href="https://sg.godaddy.com/zh" target="_blank" rel="external">Godaddy</a>，右上角个人账号的下拉菜单里面选择“我的产品”</li>
 <li>然后在域名那一项选择“管理”</li>
 <li>新页面的域名区域右上角下拉菜单选择“管理DNS”</li>
 <li>域名管理器下修改为自定义域名服务器，添加</li>
-</ul>
+</ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">f1g1ns1.dnspod.net</div><div class="line">f1g1ns2.dnspod.net</div></pre></td></tr></table></figure>
 <p><strong>目前为止完成了域名购买与解析以及与github绑定</strong></p>
 <blockquote>
 <p>大概的一个思路就是：现在DNSpod将你的域名和github pages的IP绑定，然后把Godaddy上面的域名管理器，换成DNSpod。这样用户键入网址时，浏览器会通过DNSpod解析到IP，然后通过IP查找到github pages服务器，从服务器上获取到数据。</p>
 </blockquote>
-<p>四、 hexo安装和生成</p>
-<p>首先需要知道hexo的常用命令</p>
+<h2 id="hexo安装和生成"><a href="#hexo安装和生成" class="headerlink" title="hexo安装和生成"></a>hexo安装和生成</h2><p>首先需要知道hexo的常用命令</p>
 <ul>
 <li><code>hexo g === hexo generate</code> (生成资源，就是网页到时候请求的数据，在public文件夹下)</li>
 <li><code>hexo clean</code> (清楚生成的资源)</li>
@@ -347,9 +338,9 @@
 <p>步骤：</p>
 <ul>
 <li>安装nodejs、git</li>
-<li>安装hexo（可参考官网<a href="https://hexo.io/" target="_blank" rel="external">hexo</a>）</li>
+<li>安装hexo（可参考官网<a href="https://hexo.io/" target="_blank" rel="external">hexo</a>）(在新建文件夹下执行下列命令)</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">npm install hexo-cli -g</div><div class="line">在自己准备好的空文件夹下</div><div class="line">hexo init</div><div class="line">npm install (现在好像不需要了)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">npm install hexo-cli -g</div><div class="line">hexo init</div><div class="line">npm install</div></pre></td></tr></table></figure>
 <ul>
 <li>生成<br><code>hexo g</code></li>
 <li>本地预览<br><code>hexo s</code> (现在就可以去浏览器输入<a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a>看到效果)</li>
@@ -363,8 +354,7 @@
 </li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new &quot;test&quot; // 在/source/_post/文件夹下生成test.md文件，然后就可以在那里进行编辑了</div></pre></td></tr></table></figure>
-<p>五、 配置和使用github</p>
-<blockquote>
+<h2 id="配置和使用github"><a href="#配置和使用github" class="headerlink" title="配置和使用github"></a>配置和使用github</h2><blockquote>
 <p>这里略过github的注册，并假设你已经创建了诸如u14e.github.io这样的仓库</p>
 </blockquote>
 <p>要想从本地push代码到github仓库，必须将本机的ssh key添加到github上去</p>
@@ -387,8 +377,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name &quot;u14e&quot;</div><div class="line">git config --global user.email &quot;467030463@qq.com&quot;</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>六、 部署到u14e.github.io上</p>
-<ul>
+<h2 id="部署到u14e-github-io上"><a href="#部署到u14e-github-io上" class="headerlink" title="部署到u14e.github.io上"></a>部署到u14e.github.io上</h2><ul>
 <li><p>在根目录的_config.yml里面添加git仓库（提前安装<code>npm install hexo-deployer-git --save</code>）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy: </div><div class="line">    type: git</div><div class="line">    repo: git@github.com:u14e/u14e/u14e.github.io.git</div><div class="line">    branch: master</div></pre></td></tr></table></figure>
 </li>
@@ -400,8 +389,8 @@
 </li>
 <li>现在当你再次键入u14e.github.io时，浏览器会自动跳转到u14e.me页面</li>
 </ul>
-<p><strong>后记</strong>：实现过程中还是有很多细节性的东西没能说清道明，还得自己一步一步去尝试踩坑。不断<code>hexo clean</code>、<code>hexo g</code>。而且，习惯了git版本控制工具，总想让hexo也能够具备，可以写个脚本deploy.sh，直接运行就可以了，下面是我借鉴别人的命令后尝试的一些做法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># hexo clean</div><div class="line">hexo generate</div><div class="line"># rm -R .deploy/u14e.github.io</div><div class="line">cp -R public/* .deploy/u14e.github.io</div><div class="line"># cp CNAME .deploy/u14e.github.io</div><div class="line">cd .deploy/u14e.github.io</div><div class="line"># git pull origin master</div><div class="line">git add .</div><div class="line">git commit -m “update”</div><div class="line">git push origin master</div></pre></td></tr></table></figure></p>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><ul>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>实现过程中还是有很多细节性的东西没能说清道明，还得自己一步一步去尝试踩坑。不断<code>hexo clean</code>、<code>hexo g</code>。而且，习惯了git版本控制工具，总想让hexo也能够具备，可以写个脚本deploy.sh，直接运行就可以了，下面是我借鉴别人的命令后尝试的一些做法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># hexo clean</div><div class="line">hexo generate</div><div class="line"># rm -R .deploy/u14e.github.io</div><div class="line">cp -R public/* .deploy/u14e.github.io</div><div class="line"># cp CNAME .deploy/u14e.github.io</div><div class="line">cd .deploy/u14e.github.io</div><div class="line"># git pull origin master</div><div class="line">git add .</div><div class="line">git commit -m “update”</div><div class="line">git push origin master</div></pre></td></tr></table></figure></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
 <li><a href="http://www.cnblogs.com/xinxiandong/p/3867505.html" target="_blank" rel="external">GitHub博客hexo建站之设置SSH 密钥（keys）</a></li>
 <li><a href="http://www.jianshu.com/p/05289a4bc8b2" target="_blank" rel="external">如何搭建一个独立博客——简明Github Pages与Hexo教程</a></li>
 <li><a href="http://jiji262.github.io/2016/04/15/2016-04-15-hexo-github-pages-blog/" target="_blank" rel="external">手把手教你使用Hexo + Github Pages搭建个人独立博客</a></li>
@@ -510,7 +499,7 @@
                src="/images/u14e.jpg"
                alt="u14e" />
           <p class="site-author-name" itemprop="name">u14e</p>
-          <p class="site-description motion-element" itemprop="description"></p>
+          <p class="site-description motion-element" itemprop="description">有意思额...</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
@@ -537,6 +526,44 @@
 
         <div class="links-of-author motion-element">
           
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/u14e/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.douban.com/people/66041619/" target="_blank" title="Douban">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Douban
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2629067251/" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.cnblogs.com/u14e/" target="_blank" title="Blog">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Blog
+                </a>
+              </span>
+            
+          
         </div>
 
         
@@ -554,7 +581,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目录"><span class="nav-number">2.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始"><span class="nav-number">3.</span> <span class="nav-text">开始</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参考链接"><span class="nav-number">3.1.</span> <span class="nav-text">参考链接</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#域名购买"><span class="nav-number">2.</span> <span class="nav-text">域名购买</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS解析"><span class="nav-number">3.</span> <span class="nav-text">DNS解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改域名对应的DNS地址"><span class="nav-number">4.</span> <span class="nav-text">修改域名对应的DNS地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo安装和生成"><span class="nav-number">5.</span> <span class="nav-text">hexo安装和生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置和使用github"><span class="nav-number">6.</span> <span class="nav-text">配置和使用github</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署到u14e-github-io上"><span class="nav-number">7.</span> <span class="nav-text">部署到u14e.github.io上</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">8.</span> <span class="nav-text">后记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">9.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
             
           </div>
         </section>
