@@ -40,22 +40,23 @@
   
 
   
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
 
   
     
+
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -100,7 +101,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     scheme: 'Mist',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"always"},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -249,6 +250,109 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/29/重温js的面向对象程序设计/" itemprop="url">
+                  重温js的面向对象程序设计
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-29T17:12:45+08:00" content="2016-10-29">
+              2016-10-29
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/29/重温js的面向对象程序设计/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/29/重温js的面向对象程序设计/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文的知识点全部来源于《javascript高级程序设计》第6章的内容，这里做一个概括。这一章可以说看过至少四遍以上了，每看一遍都有不一样的收获，虽然在之前的<a href="http://www.cnblogs.com/u14e/p/5234424.html">博客</a>里面有学习笔记，但是感觉还是太粗糙了，没怎么归纳出实用的东西。这里就尝试在读过几遍的基础上，提炼出实用的东西。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/29/重温js的面向对象程序设计/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/21/use-hexo-github-start-your-blog/" itemprop="url">
                   使用hexo+github建立自己的博客
                 </a>
@@ -299,110 +403,12 @@
 
       
         
-          
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>其实刚学编程时，就尝试过按照网上的教学手把手傻瓜式的折腾一个hexo+github pages出来。结果显然是因为什么都不懂，遇到问题也不知道该从哪里开始着手，所以每次重复操作都以失败告终。现在工作有段时间了，算是对编程有些领悟了，刚好有时间，就重新尝试了下，结果还真成功了，而且还很简单。所以这里记录下我搭建的整个过程，不是教别人，只是记录。如果被别人看到，并有所借鉴，那是极好的，毕竟我也是借鉴别人的经验才做成的。</p>
-<h2 id="域名购买"><a href="#域名购买" class="headerlink" title="域名购买"></a>域名购买</h2><ol>
-<li>首先是去<a href="https://sg.godaddy.com/zh" target="_blank" rel="external">Godaddy</a>搜索自己想好的域名（比如我的是u14e.me）</li>
-<li>如果还没被出售就选择，然后进入购物车</li>
-<li>其他的什么保护隐私、建站达人、虚拟主机都不用选，然后继续进入购物车</li>
-<li>期限看自己情况，我选的是一年</li>
-<li>看到价格还是那个价格就说明你没有买其他的附加产品，优惠码网上搜索一下，一般都会优惠一点</li>
-<li>然后结算，新页面中选择新用户，在结算页面填好信息，继续就可以了…</li>
-</ol>
-<h2 id="DNS解析"><a href="#DNS解析" class="headerlink" title="DNS解析"></a>DNS解析</h2><ol>
-<li>去<a href="https://www.dnspod.cn" target="_blank" rel="external">DNSpod</a>注册账户</li>
-<li>选择左侧栏的域名解析</li>
-<li>进入控制台，选择添加域名，键入你的域名</li>
-<li>添加两条记录(记录值指向的IP地址是github pages的IP)<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">192.30.252.153</div><div class="line">192.30.252.154</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="修改域名对应的DNS地址"><a href="#修改域名对应的DNS地址" class="headerlink" title="修改域名对应的DNS地址"></a>修改域名对应的DNS地址</h2><ol>
-<li>去<a href="https://sg.godaddy.com/zh" target="_blank" rel="external">Godaddy</a>，右上角个人账号的下拉菜单里面选择“我的产品”</li>
-<li>然后在域名那一项选择“管理”</li>
-<li>新页面的域名区域右上角下拉菜单选择“管理DNS”</li>
-<li>域名管理器下修改为自定义域名服务器，添加</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">f1g1ns1.dnspod.net</div><div class="line">f1g1ns2.dnspod.net</div></pre></td></tr></table></figure>
-<p><strong>目前为止完成了域名购买与解析以及与github绑定</strong></p>
-<blockquote>
-<p>大概的一个思路就是：现在DNSpod将你的域名和github pages的IP绑定，然后把Godaddy上面的域名管理器，换成DNSpod。这样用户键入网址时，浏览器会通过DNSpod解析到IP，然后通过IP查找到github pages服务器，从服务器上获取到数据。</p>
-</blockquote>
-<h2 id="hexo安装和生成"><a href="#hexo安装和生成" class="headerlink" title="hexo安装和生成"></a>hexo安装和生成</h2><p>首先需要知道hexo的常用命令</p>
-<ul>
-<li><code>hexo g === hexo generate</code> (生成资源，就是网页到时候请求的数据，在public文件夹下)</li>
-<li><code>hexo clean</code> (清楚生成的资源)</li>
-<li><code>hexo s === hexo server</code> (生成资源后，开启本地服务，可以在<a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a>预览效果)</li>
-<li><code>hexo d === hexo deploy</code>(生成资源后，部署到服务器)</li>
-<li><code>hexo n === hexo new</code> (新建页面，默认在/source/_post/下面生成文件)</li>
-<li><code>hexo new page &quot;pageName&quot;</code>（新建页面，同上）</li>
-</ul>
-<p>常用命令组合</p>
-<ul>
-<li><code>hexo d -g</code> (生成并部署)</li>
-<li><code>hexo s -g</code> （生成并本地预览）</li>
-</ul>
-<p>步骤：</p>
-<ul>
-<li>安装nodejs、git</li>
-<li>安装hexo（可参考官网<a href="https://hexo.io/" target="_blank" rel="external">hexo</a>）(在新建文件夹下执行下列命令)</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">npm install hexo-cli -g</div><div class="line">hexo init</div><div class="line">npm install</div></pre></td></tr></table></figure>
-<ul>
-<li>生成<br><code>hexo g</code></li>
-<li>本地预览<br><code>hexo s</code> (现在就可以去浏览器输入<a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a>看到效果)</li>
-<li><p>复制主题（以<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">next</a>为例）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/iissnan/hexo-theme-next themes/next</div></pre></td></tr></table></figure>
-</li>
-<li><p>修改主题(详细配置可参考<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">next</a>官网)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">在根目录的_config.yml里面更换主题</div><div class="line">theme: next</div></pre></td></tr></table></figure>
-</li>
-<li><p>写文章</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new &quot;test&quot; // 在/source/_post/文件夹下生成test.md文件，然后就可以在那里进行编辑了</div></pre></td></tr></table></figure>
-<h2 id="配置和使用github"><a href="#配置和使用github" class="headerlink" title="配置和使用github"></a>配置和使用github</h2><blockquote>
-<p>这里略过github的注册，并假设你已经创建了诸如u14e.github.io这样的仓库</p>
-</blockquote>
-<p>要想从本地push代码到github仓库，必须将本机的ssh key添加到github上去</p>
-<ul>
-<li><p>首先查看本地有没有id_rsa.pub</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls -al ~/.ssh</div></pre></td></tr></table></figure>
-</li>
-<li><p>如果没有就创建一个，然后一路回车，中途要输入密码，（密码是在提交项目时使用的，如果为空的话，提交项目就不需要输入，设置密码是防止别人往你的项目里提交内容）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C &quot;467030463@qq.com&quot;</div></pre></td></tr></table></figure>
-</li>
-<li><p>复制id_rsa.pub文件内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ~/.ssh   // 进入.ssh文件夹下，</div><div class="line">pwd     // 找到找到其路径，找到id_rsa.pub文件，复制里面的内容</div></pre></td></tr></table></figure>
-</li>
-<li><p>添加到github上，在settings -&gt; SSH and GPG keys里面new ssh key，将复制的内容添加进去就可以了</p>
-</li>
-<li><p>测试</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -T git@github.com</div></pre></td></tr></table></figure>
-</li>
-<li><p>设置用户信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name &quot;u14e&quot;</div><div class="line">git config --global user.email &quot;467030463@qq.com&quot;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="部署到u14e-github-io上"><a href="#部署到u14e-github-io上" class="headerlink" title="部署到u14e.github.io上"></a>部署到u14e.github.io上</h2><ul>
-<li><p>在根目录的_config.yml里面添加git仓库（提前安装<code>npm install hexo-deployer-git --save</code>）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy: </div><div class="line">    type: git</div><div class="line">    repo: git@github.com:u14e/u14e/u14e.github.io.git</div><div class="line">    branch: master</div></pre></td></tr></table></figure>
-</li>
-<li><p>执行<code>hexo g</code>生成资源，然后<code>hexo d</code>部署到github上，浏览器输入u14e.github.io就可以看到了</p>
-</li>
-<li><p>但是现在你的域名u14e.me还是不能访问，需要添加一个文件CANME，放在source文件夹的根目录下，方便生成资源时生成到public文件夹的根目录下</p>
-</li>
-<li><p>CANME文件里面加上你的域名<code>u14e.me</code>，然后部署</p>
-</li>
-<li>现在当你再次键入u14e.github.io时，浏览器会自动跳转到u14e.me页面</li>
-</ul>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>实现过程中还是有很多细节性的东西没能说清道明，还得自己一步一步去尝试踩坑。不断<code>hexo clean</code>、<code>hexo g</code>。而且，习惯了git版本控制工具，总想让hexo也能够具备，可以写个脚本deploy.sh，直接运行就可以了，下面是我借鉴别人的命令后尝试的一些做法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># hexo clean</div><div class="line">hexo generate</div><div class="line"># rm -R .deploy/u14e.github.io</div><div class="line">cp -R public/* .deploy/u14e.github.io</div><div class="line"># cp CNAME .deploy/u14e.github.io</div><div class="line">cd .deploy/u14e.github.io</div><div class="line"># git pull origin master</div><div class="line">git add .</div><div class="line">git commit -m “update”</div><div class="line">git push origin master</div></pre></td></tr></table></figure></p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
-<li><a href="http://www.cnblogs.com/xinxiandong/p/3867505.html" target="_blank" rel="external">GitHub博客hexo建站之设置SSH 密钥（keys）</a></li>
-<li><a href="http://www.jianshu.com/p/05289a4bc8b2" target="_blank" rel="external">如何搭建一个独立博客——简明Github Pages与Hexo教程</a></li>
-<li><a href="http://jiji262.github.io/2016/04/15/2016-04-15-hexo-github-pages-blog/" target="_blank" rel="external">手把手教你使用Hexo + Github Pages搭建个人独立博客</a></li>
-</ul>
-
-          
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>其实刚学编程时，就尝试过按照网上的教学手把手傻瓜式的折腾一个hexo+github pages出来。结果显然是因为什么都不懂，遇到问题也不知道该从哪里开始着手，所以每次重复操作都以失败告终。现在工作有段时间了，算是对编程有些领悟了，刚好有时间，就重新尝试了下，结果还真成功了，而且还很简单。所以这里记录下我搭建的整个过程，不是教别人，只是记录。如果被别人看到，并有所借鉴，那是极好的，毕竟我也是借鉴别人的经验才做成的。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/21/use-hexo-github-start-your-blog/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -500,18 +506,12 @@
 
       
         
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
+          <p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/21/hello-world/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -579,7 +579,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -589,7 +589,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
