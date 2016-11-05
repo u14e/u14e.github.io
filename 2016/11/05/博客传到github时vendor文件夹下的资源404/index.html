@@ -91,12 +91,12 @@
 <meta property="og:url" content="http://u14e.me/2016/11/05/博客传到github时vendor文件夹下的资源404/index.html">
 <meta property="og:site_name" content="u14e">
 <meta property="og:description" content="今天早上更新了一些小东西，当运行hexo d -g部署到github后，访问博客时发现内容全部无法显示，看控制台报错全是vendor文件下的资源404">
-<meta property="og:image" content="http://u14e.me/../../../images/vendor-404.png">
-<meta property="og:updated_time" content="2016-11-05T03:28:32.933Z">
+<meta property="og:image" content="http://u14e.me/images/vendor-404.png">
+<meta property="og:updated_time" content="2016-11-05T03:30:49.170Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="博客传到github后vendor文件夹下的资源404">
 <meta name="twitter:description" content="今天早上更新了一些小东西，当运行hexo d -g部署到github后，访问博客时发现内容全部无法显示，看控制台报错全是vendor文件下的资源404">
-<meta name="twitter:image" content="http://u14e.me/../../../images/vendor-404.png">
+<meta name="twitter:image" content="http://u14e.me/images/vendor-404.png">
 
 
 
@@ -307,7 +307,7 @@
       
 
       
-        <p>今天早上更新了一些小东西，当运行<code>hexo d -g</code>部署到github后，访问博客时发现内容全部无法显示，看控制台报错全是vendor文件下的资源404<br><a id="more"></a><br>如下图<br><img src="../../../images/vendor-404.png" alt="vendor 404"><br>然后去hexo的issue搜索了下问题，结果是next主题更新导致的问题。解决方案就是在root文件夹下添加.nojekyll文件<br>具体内容可以查看<a href="https://github.com/iissnan/hexo-theme-next/issues/1220" target="_blank" rel="external">#1220</a></p>
+        <p>今天早上更新了一些小东西，当运行<code>hexo d -g</code>部署到github后，访问博客时发现内容全部无法显示，看控制台报错全是vendor文件下的资源404<br><a id="more"></a><br>如下图<br><img src="/images/vendor-404.png" alt="vendor 404"><br>然后去hexo的issue搜索了下问题，结果是next主题更新导致的问题。解决方案就是在root文件夹下添加.nojekyll文件<br>具体内容可以查看<a href="https://github.com/iissnan/hexo-theme-next/issues/1220" target="_blank" rel="external">#1220</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Thanks <span class="keyword">for</span> reaching out! We recently updated to Jekyll v3.3, <span class="built_in">which</span> ignores the vendor folder by default.</div><div class="line">If you<span class="string">'re not using Jekyll, you can add a .nojekyll file to the root of your repository to disable Jekyll from building your site.</span></div><div class="line">Once you do that, your site should build with your vendor folder.</div></pre></td></tr></table></figure>
 <p>我先是在public文件夹下加上这个文件，但是因为里面什么内容都没有，所以并没有提交上去，后来在.deploy_git文件夹下也加了这个文件，github那边提交上去了，网站也可以正常访问了，耶~~</p>
 
