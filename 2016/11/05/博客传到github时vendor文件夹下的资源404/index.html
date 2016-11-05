@@ -69,7 +69,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="hexo," />
 
 
 
@@ -85,12 +85,21 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="u14e">
-<meta property="og:url" content="http://u14e.me/index.html">
+<meta name="description" content="今天早上更新了一些小东西，当运行hexo d -g部署到github后，访问博客时发现内容全部无法显示，看控制台报错全是vendor文件下的资源404，如下图然后去hexo的issue搜索了下问题，结果是next主题更新导致的问题。解决方案就是在root文件夹下添加.nojekyll文件具体内容可以查看#1220
+1Thanks for reaching out! We recently upda">
+<meta property="og:type" content="article">
+<meta property="og:title" content="博客传到github后vendor文件夹下的资源404">
+<meta property="og:url" content="http://u14e.me/2016/11/05/博客传到github时vendor文件夹下的资源404/index.html">
 <meta property="og:site_name" content="u14e">
+<meta property="og:description" content="今天早上更新了一些小东西，当运行hexo d -g部署到github后，访问博客时发现内容全部无法显示，看控制台报错全是vendor文件下的资源404，如下图然后去hexo的issue搜索了下问题，结果是next主题更新导致的问题。解决方案就是在root文件夹下添加.nojekyll文件具体内容可以查看#1220
+1Thanks for reaching out! We recently upda">
+<meta property="og:image" content="http://u14e.me/../images/vendor-404.png">
+<meta property="og:updated_time" content="2016-11-05T03:05:49.334Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="u14e">
+<meta name="twitter:title" content="博客传到github后vendor文件夹下的资源404">
+<meta name="twitter:description" content="今天早上更新了一些小东西，当运行hexo d -g部署到github后，访问博客时发现内容全部无法显示，看控制台报错全是vendor文件下的资源404，如下图然后去hexo的issue搜索了下问题，结果是next主题更新导致的问题。解决方案就是在root文件夹下添加.nojekyll文件具体内容可以查看#1220
+1Thanks for reaching out! We recently upda">
+<meta name="twitter:image" content="http://u14e.me/../images/vendor-404.png">
 
 
 
@@ -111,10 +120,10 @@
 
 
 
-  <link rel="canonical" href="http://u14e.me/"/>
+  <link rel="canonical" href="http://u14e.me/2016/11/05/博客传到github时vendor文件夹下的资源404/"/>
 
 
-  <title> u14e </title>
+  <title> 博客传到github后vendor文件夹下的资源404 | u14e </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -145,9 +154,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -234,9 +241,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -256,10 +263,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/11/05/博客传到github时vendor文件夹下的资源404/" itemprop="url">
-                  博客传到github后vendor文件夹下的资源404
-                </a>
+                博客传到github后vendor文件夹下的资源404
               
             
           </h1>
@@ -306,351 +310,63 @@
       
 
       
-        
-          
-            <p>今天早上更新了一些小东西，当运行<code>hexo d -g</code>部署到github后，访问博客时发现内容全部无法显示，看控制台报错全是vendor文件下的资源404，如下图<br><img src="../images/vendor-404.png" alt="vendor 404"><br>然后去hexo的issue搜索了下问题，结果是next主题更新导致的问题。解决方案就是在root文件夹下添加.nojekyll文件<br>具体内容可以查看<a href="https://github.com/iissnan/hexo-theme-next/issues/1220" target="_blank" rel="external">#1220</a></p>
+        <p>今天早上更新了一些小东西，当运行<code>hexo d -g</code>部署到github后，访问博客时发现内容全部无法显示，看控制台报错全是vendor文件下的资源404，如下图<br><img src="../images/vendor-404.png" alt="vendor 404"><br>然后去hexo的issue搜索了下问题，结果是next主题更新导致的问题。解决方案就是在root文件夹下添加.nojekyll文件<br>具体内容可以查看<a href="https://github.com/iissnan/hexo-theme-next/issues/1220" target="_blank" rel="external">#1220</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Thanks <span class="keyword">for</span> reaching out! We recently updated to Jekyll v3.3, <span class="built_in">which</span> ignores the vendor folder by default. If you<span class="string">'re not using Jekyll, you can add a .nojekyll file to the root of your repository to disable Jekyll from building your site. Once you do that, your site should build with your vendor folder.</span></div></pre></td></tr></table></figure>
 <p>我是在public文件夹下加上这个文件就可以了</p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/29/重温js的面向对象程序设计/" itemprop="url">
-                  重温js的面向对象程序设计
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-29T17:12:45+08:00" content="2016-10-29">
-              2016-10-29
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/29/重温js的面向对象程序设计/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/29/重温js的面向对象程序设计/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
+            <a href="/tags/hexo/" rel="tag">#hexo</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文的知识点全部来源于《javascript高级程序设计》第6章的内容，这里做一个概括。这一章可以说看过至少四遍以上了，每看一遍都有不一样的收获，虽然在之前的<a href="http://www.cnblogs.com/u14e/p/5234424.html">博客</a>里面有学习笔记，但是感觉还是太粗糙了，没怎么归纳出实用的东西。这里就尝试在读过几遍的基础上，提炼出实用的东西。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/29/重温js的面向对象程序设计/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/29/重温js的面向对象程序设计/" rel="next" title="重温js的面向对象程序设计">
+                <i class="fa fa-chevron-left"></i> 重温js的面向对象程序设计
+              </a>
+            
           </div>
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/21/use-hexo-github-start-your-blog/" itemprop="url">
-                  使用hexo+github建立自己的博客
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-21T18:27:40+08:00" content="2016-10-21">
-              2016-10-21
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/21/use-hexo-github-start-your-blog/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/21/use-hexo-github-start-your-blog/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>其实刚学编程时，就尝试过按照网上的教学手把手傻瓜式的折腾一个hexo+github pages出来。结果显然是因为什么都不懂，遇到问题也不知道该从哪里开始着手，所以每次重复操作都以失败告终。现在工作有段时间了，算是对编程有些领悟了，刚好有时间，就重新尝试了下，结果还真成功了，而且还很简单。所以这里记录下我搭建的整个过程，不是教别人，只是记录。如果被别人看到，并有所借鉴，那是极好的，毕竟我也是借鉴别人的经验才做成的。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/21/use-hexo-github-start-your-blog/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/21/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-21T17:06:19+08:00" content="2016-10-21">
-              2016-10-21
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/21/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/21/hello-world/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/21/hello-world/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
@@ -658,6 +374,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/05/博客传到github时vendor文件夹下的资源404/"
+           data-title="博客传到github后vendor文件夹下的资源404" data-url="http://u14e.me/2016/11/05/博客传到github时vendor文件夹下的资源404/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -677,8 +401,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/u14e.jpg"
@@ -759,6 +492,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -862,6 +606,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
 
   
 
