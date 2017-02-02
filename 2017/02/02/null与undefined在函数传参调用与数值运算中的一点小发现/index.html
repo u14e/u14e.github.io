@@ -1,0 +1,683 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+    
+
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="es6," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="1. 前言本文是在学习《understanding ECMAScript6》的第三章——函数时，发现给函数设置默认值参数的情况下，如果函数调用时这个实参不传或者传undefined时，函数此时调用该形参默认值，可是传null时，函数不会调用形参默认值，而是直接将这个参数赋值为null。另一个发现是在1 + null与1 + undefined之间产生不一样的结果">
+<meta property="og:type" content="article">
+<meta property="og:title" content="null与undefined在函数传参调用与数值运算中的一点小发现">
+<meta property="og:url" content="http://u14e.me/2017/02/02/null与undefined在函数传参调用与数值运算中的一点小发现/index.html">
+<meta property="og:site_name" content="u14e">
+<meta property="og:description" content="1. 前言本文是在学习《understanding ECMAScript6》的第三章——函数时，发现给函数设置默认值参数的情况下，如果函数调用时这个实参不传或者传undefined时，函数此时调用该形参默认值，可是传null时，函数不会调用形参默认值，而是直接将这个参数赋值为null。另一个发现是在1 + null与1 + undefined之间产生不一样的结果">
+<meta property="og:updated_time" content="2017-02-02T05:38:25.277Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="null与undefined在函数传参调用与数值运算中的一点小发现">
+<meta name="twitter:description" content="1. 前言本文是在学习《understanding ECMAScript6》的第三章——函数时，发现给函数设置默认值参数的情况下，如果函数调用时这个实参不传或者传undefined时，函数此时调用该形参默认值，可是传null时，函数不会调用形参默认值，而是直接将这个参数赋值为null。另一个发现是在1 + null与1 + undefined之间产生不一样的结果">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://u14e.me/2017/02/02/null与undefined在函数传参调用与数值运算中的一点小发现/"/>
+
+
+  <title> null与undefined在函数传参调用与数值运算中的一点小发现 | u14e </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c6ca7232fc8b5ceef37a970377ae4650";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">u14e</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">有意思额...</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                null与undefined在函数传参调用与数值运算中的一点小发现
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-02T04:08:53+08:00" content="2017-02-02">
+              2017-02-02
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/02/null与undefined在函数传参调用与数值运算中的一点小发现/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/02/null与undefined在函数传参调用与数值运算中的一点小发现/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h2><p>本文是在学习《understanding ECMAScript6》的第三章——函数时，发现给函数设置默认值参数的情况下，如果函数调用时这个实参不传或者传undefined时，函数此时调用该形参默认值，可是传null时，函数不会调用形参默认值，而是直接将这个参数赋值为null。另一个发现是在<code>1 + null</code>与<code>1 + undefined</code>之间产生不一样的结果<br><a id="more"></a></p>
+<h2 id="2-代码样例"><a href="#2-代码样例" class="headerlink" title="2. 代码样例"></a>2. 代码样例</h2><p>首先声明一个函数add，给第二个形参设置默认值，函数调用时查看second值以及first+second的结果</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">first, second = <span class="number">2</span></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">`second: <span class="subst">$&#123;second&#125;</span>; sum: <span class="subst">$&#123;first + second&#125;</span>`</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="当那个实参不传或者传undefined时"><a href="#当那个实参不传或者传undefined时" class="headerlink" title="当那个实参不传或者传undefined时"></a>当那个实参不传或者传undefined时</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">add(<span class="number">1</span>);             <span class="comment">// second: 2; sum: 3</span></div><div class="line">add(<span class="number">1</span>, <span class="literal">undefined</span>);  <span class="comment">// second: 2; sum: 3</span></div></pre></td></tr></table></figure>
+<p>结果均为3</p>
+<h3 id="当那个实参传null时"><a href="#当那个实参传null时" class="headerlink" title="当那个实参传null时"></a>当那个实参传null时</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">add(<span class="number">1</span>, <span class="literal">null</span>);       <span class="comment">// second: null; sum: 1</span></div></pre></td></tr></table></figure>
+<h2 id="3-参数默认值的问题"><a href="#3-参数默认值的问题" class="headerlink" title="3. 参数默认值的问题"></a>3. 参数默认值的问题</h2><p>首先看下<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Default_parameters#Syntax" target="_blank" rel="external">MDN</a>上面的说明：<strong>如果一个形参没有被传入对应的实参或者传入了undefined,则该形参会被赋一个默认值</strong></p>
+<p>单就这个结论其实就可以进行实际开发了，可是如果细想一下，es6内部到底是怎么对此类实参进行判断，或许印象会更加深刻</p>
+<h3 id="es6之前设置参数默认值"><a href="#es6之前设置参数默认值" class="headerlink" title="es6之前设置参数默认值"></a>es6之前设置参数默认值</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// bad way (second为0时，未能产生预期结果)</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">first, second</span>) </span>&#123;</div><div class="line">    second = second || <span class="number">2</span>;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">`second: <span class="subst">$&#123;second&#125;</span>; sum: <span class="subst">$&#123;first + second&#125;</span>`</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// good way</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">first, second</span>) </span>&#123;</div><div class="line">    second = (<span class="keyword">typeof</span> second !== <span class="string">'undefined'</span>) ? second : <span class="number">2</span>;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">`second: <span class="subst">$&#123;second&#125;</span>; sum: <span class="subst">$&#123;first + second&#125;</span>`</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="通过babel转译看es6转译回es5的代码"><a href="#通过babel转译看es6转译回es5的代码" class="headerlink" title="通过babel转译看es6转译回es5的代码"></a>通过babel转译看es6转译回es5的代码</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">"use strict"</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">first</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> second = <span class="built_in">arguments</span>.length &gt; <span class="number">1</span> &amp;&amp; <span class="built_in">arguments</span>[<span class="number">1</span>] !== <span class="literal">undefined</span> ? <span class="built_in">arguments</span>[<span class="number">1</span>] : <span class="number">2</span>;</div><div class="line"></div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"second: "</span> + second + <span class="string">"; sum: "</span> + (first + second));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>根据<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table" target="_blank" rel="external">运算符</a>优先级修饰下second的赋值代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> second = (<span class="built_in">arguments</span>.length &gt; <span class="number">1</span> &amp;&amp; <span class="built_in">arguments</span>[<span class="number">1</span>] !== <span class="literal">undefined</span>) ? <span class="built_in">arguments</span>[<span class="number">1</span>] : <span class="number">2</span>;</div></pre></td></tr></table></figure>
+<p>可以看到对second的赋值首先会判断有没有传第二个参数，没有就赋值为2；若有再判断是否不为undefined，若不为则赋值为实参，否则赋值为2。而null与undefined显然不严格相等<br>如果是用typeof判断的话，<code>typeof null === &#39;object&#39;</code>，这里null属于对象，显然也不等于undefined</p>
+<p>所以基本上与es6之前的good way差不多</p>
+<h2 id="4-1-null为0的问题"><a href="#4-1-null为0的问题" class="headerlink" title="4. 1 + null为0的问题"></a>4. <code>1 + null</code>为0的问题</h2><p>参考<a href="http://stackoverflow.com/questions/13407544/why-null-in-javascript-is-bigger-than-1-less-than-1-but-not-equal-to-0" target="_blank" rel="external">stackoverflow</a>，得知<a href="http://interglacial.com/javascript_spec/a-9.html#a-9.3" target="_blank" rel="external">ToNumber</a>对非数值转化为数值的几种情况（没有列举出string和object类型）：</p>
+<ul>
+<li>Null -&gt; +0</li>
+<li>Undefined -&gt; NaN</li>
+<li>Boolean -&gt; if true then 1 else if false then +0</li>
+</ul>
+<p>所以</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="literal">null</span> + <span class="literal">null</span>     <span class="comment">// 0 + 0 = 0</span></div><div class="line"><span class="number">1</span> + <span class="literal">null</span>        <span class="comment">// 1 + 0 = 0</span></div><div class="line"><span class="number">1</span> + <span class="literal">undefined</span>   <span class="comment">// 1 + NaN = NaN</span></div></pre></td></tr></table></figure>
+<h2 id="5-其它链接"><a href="#5-其它链接" class="headerlink" title="5. 其它链接"></a>5. 其它链接</h2><ul>
+<li><a href="http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html" target="_blank" rel="external">undefined与null的区别</a>  ——阮一峰</li>
+<li><a href="http://stackoverflow.com/questions/25799408/javascript-null-and-plus-operatior" target="_blank" rel="external">JavaScript null and plus (+) operatior</a>  ——stackoverflow</li>
+<li><a href="https://github.com/getify/You-Dont-Know-JS/blob/master/types%20%26%20grammar/ch4.md" target="_blank" rel="external">You Dont Know JS: Types -&gt; ToNumber</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/es6/" rel="tag">#es6</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/09/基于浮动布局的等高分栏/" rel="next" title="基于浮动布局的等高分栏">
+                <i class="fa fa-chevron-left"></i> 基于浮动布局的等高分栏
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/02/null与undefined在函数传参调用与数值运算中的一点小发现/"
+           data-title="null与undefined在函数传参调用与数值运算中的一点小发现" data-url="http://u14e.me/2017/02/02/null与undefined在函数传参调用与数值运算中的一点小发现/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/u14e.jpg"
+               alt="u14e" />
+          <p class="site-author-name" itemprop="name">u14e</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/u14e/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://book.douban.com/people/66041619/" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2629067251/" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.cnblogs.com/u14e/" target="_blank" title="博客园">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  博客园
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-前言"><span class="nav-number">1.</span> <span class="nav-text">1. 前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-代码样例"><span class="nav-number">2.</span> <span class="nav-text">2. 代码样例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#当那个实参不传或者传undefined时"><span class="nav-number">2.1.</span> <span class="nav-text">当那个实参不传或者传undefined时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#当那个实参传null时"><span class="nav-number">2.2.</span> <span class="nav-text">当那个实参传null时</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-参数默认值的问题"><span class="nav-number">3.</span> <span class="nav-text">3. 参数默认值的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#es6之前设置参数默认值"><span class="nav-number">3.1.</span> <span class="nav-text">es6之前设置参数默认值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过babel转译看es6转译回es5的代码"><span class="nav-number">3.2.</span> <span class="nav-text">通过babel转译看es6转译回es5的代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-null为0的问题"><span class="nav-number">4.</span> <span class="nav-text">4. 1 + null为0的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-其它链接"><span class="nav-number">5.</span> <span class="nav-text">5. 其它链接</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">u14e</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"u14e"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
