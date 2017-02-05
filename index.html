@@ -257,6 +257,141 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/05/箭头函数-笔记/" itemprop="url">
+                  【笔记】箭头函数
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-05T23:46:50+08:00" content="2017-02-05">
+              2017-02-05
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/05/箭头函数-笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/05/箭头函数-笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文摘录自《understanding ECMAScript6》的第三章——函数，<br>主要内容包括：箭头函数与传统函数的差异、语法、利用箭头函数创建立即执行函数、箭头函数中的this等等</p>
+<h2 id="箭头函数与传统函数的差异"><a href="#箭头函数与传统函数的差异" class="headerlink" title="箭头函数与传统函数的差异"></a>箭头函数与传统函数的差异</h2><ul>
+<li><strong>没有this、super、arguments，也没有new.target绑定</strong>：它们的值由所在的、最靠近的非箭头函数来决定</li>
+<li><strong>不能被new调用</strong>：箭头函数没有[[constructor]]方法，不能被当作构造函数被new调用</li>
+<li><strong>没有原型</strong>：没有prototype属性</li>
+<li><strong>不能更改this</strong>：this的值由包含它的函数决定，在函数的整个生命周期内其值不变</li>
+<li><strong>没有arguments对象</strong>：箭头函数没有arguments绑定，必须依赖形参或剩余参数来访问函数的参数</li>
+<li><strong>不允许重复的形参</strong>：无论严格模式还是非严格模式，都不允许出现重复的形参</li>
+</ul>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>单个参数时，省略括号</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// es6</span></div><div class="line"><span class="keyword">let</span> func = <span class="function"><span class="params">value</span> =&gt;</span> value</div><div class="line"></div><div class="line"><span class="comment">// es5</span></div><div class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> value;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>多个参数、无参数时，需要括号</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// es6</span></div><div class="line"><span class="keyword">let</span> sum = <span class="function">(<span class="params">num1, num2</span>) =&gt;</span> num1 + num2;</div><div class="line"><span class="comment">// es5</span></div><div class="line"><span class="keyword">var</span> sum = <span class="function"><span class="keyword">function</span>(<span class="params">num1, num2</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> num1 + num2;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// es6</span></div><div class="line"><span class="keyword">let</span> getName = <span class="function"><span class="params">()</span> =&gt;</span> <span class="string">'Nicholas'</span>;</div><div class="line"><span class="comment">// es5</span></div><div class="line"><span class="keyword">var</span> getName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">'Nicholas'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>创建空函数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> doNothing = <span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;</div></pre></td></tr></table></figure></p>
+<p>返回对象字面量：把对象字面量包裹在括号内，表示括号内是一个字面量而不是函数体</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// es6</span></div><div class="line"><span class="keyword">let</span> getObj = <span class="function"><span class="params">id</span> =&gt;</span> (&#123; id, <span class="attr">name</span>: <span class="string">'u14e'</span> &#125;);</div><div class="line"><span class="comment">// es5</span></div><div class="line"><span class="keyword">var</span> getObj = <span class="function"><span class="keyword">function</span>(<span class="params">id</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="attr">id</span>: id,</div><div class="line">        <span class="attr">name</span>: <span class="string">'u14e'</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：上面的箭头函数都是没有使用花括号的，这种情况下js引擎默认添加了return。而使用花括号后，需要手动添加return语句，如果没加，函数将不返回值</p>
+</blockquote>
+<h2 id="创建立即执行函数"><a href="#创建立即执行函数" class="headerlink" title="创建立即执行函数"></a>创建立即执行函数</h2><blockquote>
+<p>使用传统函数时，(function(){})()、(function(){}())都可以，而箭头函数只支持(() =&gt; {})();</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> person = (<span class="function"><span class="params">name</span> =&gt;</span> (&#123;</div><div class="line">    <span class="attr">getName</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> name &#125;</div><div class="line">&#125;))(<span class="string">'Nicholas'</span>);</div><div class="line"><span class="built_in">console</span>.log(person.getName());          <span class="comment">// Nicholas</span></div></pre></td></tr></table></figure>
+<h2 id="没有this绑定"><a href="#没有this绑定" class="headerlink" title="没有this绑定"></a>没有this绑定</h2><p>传统函数中的this可以被改变，其值取决于调用该函数时的上下文</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> pageHandler = &#123;</div><div class="line">    <span class="attr">id</span>: <span class="string">'123456'</span>,</div><div class="line">    <span class="attr">init</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">document</span>.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">            <span class="keyword">this</span>.doSomething(event.type);       <span class="comment">// 报错，因为this指向的时document，而不是pageHandler</span></div><div class="line">        &#125;, <span class="literal">false</span>);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">doSomething</span>: <span class="function"><span class="keyword">function</span>(<span class="params">type</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(type);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用bind()方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> pageHandler = &#123;</div><div class="line">    <span class="attr">id</span>: <span class="string">'123456'</span>,</div><div class="line">    <span class="attr">init</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">document</span>.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">            <span class="keyword">this</span>.doSomething(event.type);       <span class="comment">// 报错，因为this指向的时document，而不是pageHandler</span></div><div class="line">        &#125;.bind(<span class="keyword">this</span>), <span class="literal">false</span>);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">doSomething</span>: <span class="function"><span class="keyword">function</span>(<span class="params">type</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(type);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>箭头函数没有this绑定，this只能通过查找作用域来确定。如果箭头函数被包含在一个非箭头函数内，那么this就与该函数的this相等；否则，this值为undefined</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> pageHandler = &#123;</div><div class="line">    <span class="attr">id</span>: <span class="string">'123456'</span>,</div><div class="line">    <span class="attr">init</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">document</span>.addEventListener(<span class="string">'click'</span>, event =&gt; &#123;</div><div class="line">            <span class="keyword">this</span>.doSomething(event.type);</div><div class="line">        &#125;, <span class="literal">false</span>);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">doSomething</span>: <span class="function"><span class="keyword">function</span>(<span class="params">type</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(type);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：由于箭头函数的this值由包含它的函数决定，因此不能使用call、apply、bind方法来改变this值</p>
+</blockquote>
+<h2 id="没有arguments对象"><a href="#没有arguments对象" class="headerlink" title="没有arguments对象"></a>没有arguments对象</h2><p>虽然箭头函数没有自己的arguments对象，但是可以访问包含它的函数的arguments对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">arguments</span>[<span class="number">0</span>];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> func = foo(<span class="number">3</span>);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(func());    <span class="comment">// 3</span></div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/02/02/null与undefined在函数传参调用与数值运算中的一点小发现/" itemprop="url">
                   null与undefined在函数传参调用与数值运算中的一点小发现
                 </a>
@@ -895,7 +1030,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -905,7 +1040,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
